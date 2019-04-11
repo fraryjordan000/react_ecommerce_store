@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ApiList from '../containers/Api-list';
 
 class Home extends Component {
   product_list_styles = () => {
@@ -7,14 +8,10 @@ class Home extends Component {
     }
   }
 
-  componentDidMount() {
-    
-  }
-
   render() {
     return (
       <div style={this.product_list_styles()}>
-        {this.products}
+        <ApiList />
       </div>
     )
   }
