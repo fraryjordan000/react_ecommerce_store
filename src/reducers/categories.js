@@ -1,7 +1,7 @@
 
-export function api(state = [], action) {
+export default function(state = [], action) {
     switch(action.type) {
-        case 'UPDATE_API':
+        case 'UPDATE_CATEGORIES':
             return action.payload;
         default:
             return state;

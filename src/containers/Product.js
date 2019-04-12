@@ -1,19 +1,39 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { addToCart } from '../actions/index';
+import { addToCart, removeFromCart } from '../actions/index';
 
 class Product extends Component {
 
     state = {
-        inCart: false,
-        inCartText: 'In Cart',
-        activeText: 'Add To Cart'
+        inCart: this.props.product.inCart,
+        inCartText: 'Remove From Cart',
+        outOfCartText: 'Add To Cart',
+        activeText: ''
     }
 
-    updateTextAndCart = product => {
-        if(this.state.inCart) return;
-        this.setState({inCart: true, activeText: this.state.inCartText});
-        this.props.addToCart(product);
+    textLogic = () => {
+        if(this.props.product.inCart) {
+            this.setState({activeText: this.state.inCartText});
+        } else {
+            this.setState({activeText: this.state.outOfCartText});
+        }
+    }
+
+    clicked = (id) => {
+        if(this.props.product.inCart) {
+            this.props.removeFromCart(id);
+        } else {
+            this.props.addToCart(id);
+        }
+        if(this.props.reRender !== undefined) {
+            this.props.reRender();
+            return;
+        }
+        this.textLogic();
+    }
+
+    componentDidMount() {
+        this.textLogic();
     }
 
     getStyles = () => {
@@ -28,7 +48,7 @@ class Product extends Component {
         <div key={prod.id}>
             <h3>{prod.title}</h3>
             <p>{prod.description}</p>
-            <button onClick={() => this.updateTextAndCart(prod)} disabled={this.state.inCart}>{this.state.activeText}</button>
+            <button onClick={() => this.clicked(prod.id)}>{this.state.activeText}</button>
         </div>
         )
     }
@@ -36,14 +56,18 @@ class Product extends Component {
 
 function mapStateToProps(state) {
     return {
-        cart: state.cart
+        cart: state.cart,
+        api: state.api
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        addToCart: product => {
-            dispatch(addToCart(product));
+        addToCart: id => {
+            dispatch(addToCart(id));
+        },
+        removeFromCart: id => {
+            dispatch(removeFromCart(id));
         }
     }
 };

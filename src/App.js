@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
 import Navbar from './components/Navbar';
-import Home from './components/Home';
-import Details from './components/Details';
-import Cart from './components/Cart';
+import Home from './containers/Home';
+import Details from './containers/Details';
+import Cart from './containers/Cart';
 
 class App extends Component {
   
@@ -20,8 +20,8 @@ class App extends Component {
         <Navbar />
         <Route exact path="/" component={() => <Home/>}/>
         <Route exact path="/home" component={() => <Home/>}/>
-        <Route exact path="/details" component={Details}/>
-        <Route exact path="/cart" component={Cart}/>
+        <Route exact path="/details" component={() => <Details/>}/>
+        <Route exact path="/cart" component={() => <Cart/>}/>
         </div>
       </Router>
     );

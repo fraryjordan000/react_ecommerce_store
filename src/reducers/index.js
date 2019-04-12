@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 
-import { api } from './api';
-import { cart } from './cart';
+import products from './products';
+import categories from './categories';
+import tickets from './tickets';
 
 const allReducers = combineReducers({
-    api: api,
-    cart: cart
+    products: products,
+    categories: categories,
+    tickets: tickets
 });
 
 export default allReducers;
