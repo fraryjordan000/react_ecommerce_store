@@ -1,5 +1,160 @@
+/* Generic Styles Start */
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'serif';
+
+  width: 100%;
+  height: 100%;
 }
+
+a {
+  text-decoration: none;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: darkgreen;
+  border: 1px solid darkgreen;
+  border-radius: 5px;
+  height: 37px;
+  padding: 0 2px;
+}
+
+.cartButton {
+  width: 75%;
+  height: 37px;
+  border-radius: 5px;
+  outline: none;
+
+  cursor: pointer;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  
+  margin-top: 15px;
+}
+
+/* Generic Styles End */
+/* Navbar Styles Start*/
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 50px;
+  background-color: #bca;
+}
+
+.navbar a {
+  margin: 0 5px;
+  color: #eee;
+}
+
+.navbar a:hover {
+  color: #fff;
+}
+
+/* Navbar Styles End */
+/* Product Styles Start */
+
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+
+  width: 90%;
+  height: 95%;
+  padding-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.product a {
+  font-size: 1.85rem;
+  color: #222;
+}
+
+.product a:hover {
+  text-decoration: underline;
+  color: #111;
+}
+
+.product img {
+  max-width: 300px;
+  min-width: 300px;
+  height: 300px;
+
+  padding: 5px;
+  padding-top: 15px;
+}
+
+.product div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+
+  margin-top: auto;
+}
+
+.product div button {
+  
+}
+
+.product div button:hover {
+  background-color: #eee;
+}
+
+/* Product Styles End */
+/* Details Styles Start */
+
+.detailsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+
+  width: 90%;
+  height: 100%;
+  margin: auto;
+}
+
+.detailsContainer img {
+  width: 25%;
+  height: 25%;
+  max-height: 300px;
+  margin: 10px;
+  padding: 10px;
+  
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.details h3 {
+  width: 25%;
+}
+
+.details div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  width: 75%;
+}
+
+.details div button {
+  margin: 0 5%;
+}
+
+/* Details Styles End */

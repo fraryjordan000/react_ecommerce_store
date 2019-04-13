@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 // import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { updateProducts, updateCategories, filterProducts } from '../actions/index';
@@ -10,12 +10,6 @@ class ProductsList extends Component {
 
     state = {
         productsXML: []
-    }
-
-    getDivStyles = () => {
-        return {
-            
-        }
     }
 
     createProducts = (arr) => {
@@ -54,7 +48,7 @@ class ProductsList extends Component {
 
     render() {
         return (
-            <div style={this.getDivStyles()}>
+            <div className="container">
                 {this.state.productsXML}
             </div>
         );

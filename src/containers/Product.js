@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addToCart, removeFromCart } from '../actions/index';
+import { addToCart, removeFromCart, updateActive } from '../actions/index';
 
 class Product extends Component {
 
@@ -36,19 +37,16 @@ class Product extends Component {
         this.textLogic();
     }
 
-    getStyles = () => {
-        return {
-            
-        }
-    }
-
     render() {
         let prod = this.props.product;
         return (
-        <div key={prod.id}>
-            <h3>{prod.title}</h3>
-            <p>{prod.description}</p>
-            <button onClick={() => this.clicked(prod.id)}>{this.state.activeText}</button>
+        <div key={prod.id} className="product">
+            <img src={prod.img} alt="Item"/>
+            <Link to="/details" onClick={() => this.props.updateActive(prod.id)}>{prod.title}</Link>
+            <div>
+                <span className="price">${prod.price}</span>
+                <button onClick={() => this.clicked(prod.id)} className="cartButton">{this.state.activeText}</button>
+            </div>
         </div>
         )
     }
@@ -68,6 +66,9 @@ const mapDispatchToProps = dispatch => {
         },
         removeFromCart: id => {
             dispatch(removeFromCart(id));
+        },
+        updateActive: index => {
+            dispatch(updateActive(index));
         }
     }
 };

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Product from './Product';
 import axios from 'axios';
@@ -8,12 +8,6 @@ class Cart extends Component {
 
   state = {
     productsXML: []
-  }
-
-  getStyles = () => {
-    return {
-      
-    }
   }
 
   reRender = () => {
@@ -50,7 +44,7 @@ class Cart extends Component {
 
   render() {
     return (
-      <div style={this.getStyles()}>
+      <div className="container">
         {this.state.productsXML}
       </div>
     )

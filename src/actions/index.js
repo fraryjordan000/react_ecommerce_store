@@ -39,3 +39,10 @@ export const addTicket = (ticket) => {
         payload: ticket
     }
 }
+
+export const updateActive = (id) => {
+    return {
+        type: 'UPDATE_ACTIVE',
+        payload: id
+    }
+}
