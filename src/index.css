@@ -108,15 +108,38 @@ a {
   margin-top: auto;
 }
 
-.product div button {
-  
-}
-
 .product div button:hover {
   background-color: #eee;
 }
 
 /* Product Styles End */
+/* Home Styles Start */
+
+.sortBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: 100%;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.sortBox span {
+  margin-right: 5px;
+}
+
+.sortBox select {
+  width: 150px;
+  height: 30px;
+  outline: none;
+}
+
+.sortBox select:hover {
+  background-color: #eee;
+}
+
+/* Home Styles End */
 /* Details Styles Start */
 
 .detailsContainer {
@@ -158,3 +181,69 @@ a {
 }
 
 /* Details Styles End */
+/* Cart Styles Start */
+
+.checkout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
+  height: 30px;
+}
+
+.checkout button {
+  width: 150px;
+  height: 30px;
+
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checkout button:hover {
+  background-color: #eee;
+}
+
+/* Cart Styles End */
+/* Orders Styles Start */
+
+.ticketsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ticket {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  width: 50%;
+  margin-top: 7px;
+  padding: 0 15px;
+
+  border: 1px solid #ccc;
+}
+
+.ticket div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.ticket div h3 {
+  color: #555;
+}
+
+.ticket div span {
+  color: darkgreen;
+  margin-right: 15px;
+}
+
+/* Orders Styles End */

@@ -12,6 +12,12 @@ export const removeFromCart = (product) => {
     }
 }
 
+export const clearCart = () => {
+    return {
+        type: 'CLEAR_CART'
+    }
+}
+
 export const updateProducts = (arr) => {
     return {
         type: 'UPDATE_PRODUCTS',
@@ -44,5 +50,11 @@ export const updateActive = (id) => {
     return {
         type: 'UPDATE_ACTIVE',
         payload: id
+    }
+}
+
+export const triggerChange = () => {
+    return {
+        type: 'TRIGGER_CHANGE'
     }
 }

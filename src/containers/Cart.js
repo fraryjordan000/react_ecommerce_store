@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Product from './Product';
 import axios from 'axios';
-import { updateProducts } from '../actions';
+import { updateProducts, clearCart, addTicket } from '../actions';
 
 class Cart extends Component {
 
@@ -26,6 +26,26 @@ class Cart extends Component {
     this.setState({productsXML: rtn});
   }
 
+  purchase = () => {
+    let d = new Date();
+    let ticket = {
+      date: "",
+      items: "",
+      total: 0
+    }
+    for(let i in this.props.products) {
+      if(this.props.products[i].inCart) {
+        ticket.items += "["+this.props.products[i].title+"], ";
+        ticket.total += this.props.products[i].price;
+      }
+    }
+    ticket.items = ticket.items.substring(0,ticket.items.length-2);
+    ticket.date = `${d.toLocaleDateString()} - ${d.toLocaleTimeString()}`;
+    this.props.addTicket(ticket);
+    this.props.clearCart();
+    this.setState({productsXML: []});
+  }
+
   componentDidMount() {
     if(this.props.products.length === 0) {
       axios.get('https://my-json-server.typicode.com/tdmichaelis/typicode/products').then(res => {
@@ -44,9 +64,14 @@ class Cart extends Component {
 
   render() {
     return (
-      <div className="container">
-        {this.state.productsXML}
-      </div>
+      <React.Fragment>
+        <div className="checkout">
+          <button onClick={() => this.purchase()}>Purchase</button>
+        </div>
+        <div className="container">
+          {this.state.productsXML.length > 0 ? this.state.productsXML : (<div style={{gridColumn: '2/3'}}>Go buy something!</div>)}
+        </div>
+      </React.Fragment>
     )
   }
 }
@@ -61,6 +86,12 @@ const mapDispatchToProps = dispatch => {
   return {
       updateProducts: arr => {
         dispatch(updateProducts(arr));
+      },
+      clearCart: () => {
+        dispatch(clearCart());
+      },
+      addTicket: ticket => {
+        dispatch(addTicket(ticket));
       }
   }
 };

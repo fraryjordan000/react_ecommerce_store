@@ -42,17 +42,18 @@ class Details extends Component {
   }
 
   render() {
-    if(this.state.product.error) return (<div>ERROR: No product specified</div>);
+    let prod = this.state.product;
+    if(prod.error) return (<div>ERROR: No product specified</div>);
     return (
       <React.Fragment>
         <div className="detailsContainer">
-          <img src={this.state.product.img} alt="product" />
+          <img src={prod.img} alt="product" />
           <div className="details">
-            <h1>{this.state.product.title}</h1>
-            <p>{this.state.product.description}</p>
+            <h1>{prod.title}</h1>
+            <p>{prod.description}</p>
             <div>
-              <h3 className="price">{this.state.product.price}</h3>
-              <button onClick={() => this.clicked(this.state.product.id)} className="cartButton">{this.state.activeText}</button>
+              <h3 className="price">{prod.price}</h3>
+              <button onClick={() => this.clicked(prod.id)} className="cartButton">{this.state.activeText}</button>
             </div>
           </div>
         </div>

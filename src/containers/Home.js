@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { updateProducts, updateCategories, filterProducts } from '../actions/index';
+import { updateProducts, updateCategories, filterProducts, triggerChange,  } from '../actions/index';
 import axios from 'axios';
 
 import Product from './Product';
@@ -9,7 +9,8 @@ import Product from './Product';
 class ProductsList extends Component {
 
     state = {
-        productsXML: []
+        productsXML: [],
+        categoriesXML: []
     }
 
     createProducts = (arr) => {
@@ -22,6 +23,33 @@ class ProductsList extends Component {
             ));
         }
         this.setState({productsXML: rtn});
+    }
+
+    createOptions = (arr) => {
+        let rtn = [];
+        let categories = arr !== undefined ? arr : this.props.categories;
+        if(this.props.filter === 'none') {
+            rtn.push((<option defaultValue key={Math.random()} value="none">None</option>));
+        } else {
+            rtn.push((<option key={Math.random()} value="none">None</option>));
+        }
+        for(let category of categories) {
+            if(category === this.props.filter) {
+                rtn.push((
+                    <option defaultValue value={category} key={Math.random()}>{category}</option>
+                ));
+                continue;
+            }
+            rtn.push((
+                <option value={category} key={Math.random()}>{category}</option>
+            ));
+        }
+        this.setState({categoriesXML: rtn});
+    }
+
+    selectChanged = (e) => {
+        let category = e.target.value;
+        this.props.filterProducts(category);
     }
 
     componentDidMount() {
@@ -42,15 +70,32 @@ class ProductsList extends Component {
             axios.get('https://my-json-server.typicode.com/tdmichaelis/typicode/categories').then(res => {
                 console.log('InProductsList:', res.data);
                 this.props.updateCategories(res.data);
+                this.createOptions(res.data);
             });
+        } else {
+            this.createOptions();
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if(prevProps.change !== this.props.change) {
+            this.createProducts(this.props.products);
         }
     }
 
     render() {
         return (
-            <div className="container">
-                {this.state.productsXML}
-            </div>
+            <React.Fragment>
+                <form className="sortBox">
+                    <span>Sort Category:</span>
+                    <select onChange={this.selectChanged} value={this.props.filter}>
+                        {this.state.categoriesXML}
+                    </select>
+                </form>
+                <div className="container">
+                    {this.state.productsXML}
+                </div>
+            </React.Fragment>
         );
     }
 }
@@ -58,7 +103,9 @@ class ProductsList extends Component {
 function mapStateToProps(state) {
     return {
         products: state.products,
-        categories: state.categories
+        categories: state.categories,
+        change: state.change,
+        filter: state.filter
     }
 }
 
@@ -72,6 +119,7 @@ const mapDispatchToProps = dispatch => {
         },
         filterProducts: str => {
             dispatch(filterProducts(str));
+            dispatch(triggerChange());
         }
     }
 };
