@@ -50,6 +50,7 @@ class Details extends Component {
           <img src={prod.img} alt="product" />
           <div className="details">
             <h1>{prod.title}</h1>
+            <h2>Rating: {prod.rating}/5</h2>
             <p>{prod.description}</p>
             <div>
               <h3 className="price">{prod.price}</h3>

@@ -39,6 +39,7 @@ a {
   grid-template-columns: 1fr 1fr 1fr;
   
   margin-top: 15px;
+  text-align: center;
 }
 
 /* Generic Styles End */

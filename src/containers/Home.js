@@ -59,7 +59,7 @@ class ProductsList extends Component {
                     res.data[i].inCart = false;
                     res.data[i].visible = true;
                 }
-                console.log('InProductsList:', res.data);
+                // console.log('InProductsList:', res.data);
                 this.props.updateProducts(res.data);
                 this.createProducts(res.data);
             });
@@ -68,7 +68,7 @@ class ProductsList extends Component {
         }
         if(this.props.categories.length === 0) {
             axios.get('https://my-json-server.typicode.com/tdmichaelis/typicode/categories').then(res => {
-                console.log('InProductsList:', res.data);
+                // console.log('InProductsList:', res.data);
                 this.props.updateCategories(res.data);
                 this.createOptions(res.data);
             });
